@@ -1,0 +1,34 @@
+{
+  "name": "jitosho-num",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha -r ts-node/register src/**/*.spec.ts"
+  },
+  "author": "waman",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/waman/jitosho-num.git"
+  },
+  "description": "JavaScript/TypeScript library of numbers",
+  "license": "ISC",
+  "dependencies": {
+    "tslint": "^6.1.3"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.2.20",
+    "@types/mocha": "^8.2.3",
+    "@types/node": "^15.14.1",
+    "@typescript-eslint/eslint-plugin": "^4.28.2",
+    "@typescript-eslint/parser": "^4.28.2",
+    "chai": "^4.3.4",
+    "eslint": "^7.30.0",
+    "mocha": "^8.4.0",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.5"
+  },
+  "bugs": {
+    "url": "https://github.com/waman/jitosho-num/issues"
+  },
+  "homepage": "https://github.com/waman/jitosho-num#readme"
+}
