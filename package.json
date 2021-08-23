@@ -1,5 +1,5 @@
 {
-  "name": "jitosho-num",
+  "name": "@waman/jitosho-num",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
