@@ -35,11 +35,7 @@ export abstract class ContinuedFraction {
         return this.partialDenominator(0) + f;
     }
 
-    eval(): number {
-        return this.evalWith((prev, current) => prev === current, 1000 );
-    }
-
-    evalWith(cond: (previous: number, current: number) => boolean, nMax = 1000): number {
+    eval(epsilon = 0, nMax = 1000): number {
         let p1 = 1, q1 = 0, p2 = this.partialDenominator(0), q2 = 1;
         let prev = p2;
 
@@ -56,7 +52,7 @@ export abstract class ContinuedFraction {
                 // TODO
                 p2 = p2 >= 0 ? Number.POSITIVE_INFINITY : Number.NEGATIVE_INFINITY;
             }
-            if(cond(prev, p2)) break;
+            if(Math.abs(prev - p2) <= epsilon) break;
         }
         return p2;
     }
@@ -90,7 +86,7 @@ export abstract class SimpleContinuedFraction extends ContinuedFraction{
         return this.coefficient(0) + f;
     }
 
-    evalWith(cond: (previous: number, current: number) => boolean, nMax = 1000): number{
+    eval(epsilon: number = 0, nMax = 1000): number{
         let p1 = 1, q1 = 0, p2 = this.coefficient(0), q2 = 1;
         let prev = p2;
 
@@ -106,7 +102,7 @@ export abstract class SimpleContinuedFraction extends ContinuedFraction{
                 // TODO
                 p2 = p2 >= 0 ? Number.POSITIVE_INFINITY : Number.NEGATIVE_INFINITY;
             }
-            if(cond(prev, p2)) break;
+            if(Math.abs(prev - p2) <= epsilon) break;
         }
         return p2;
     }
@@ -125,7 +121,7 @@ export abstract class SimpleContinuedFraction extends ContinuedFraction{
             const temp = this.coefficient(i) * num + deno; deno = num; num = temp;
             const d = gcd(num, deno); num /= d; deno /= d;
         }
-        return new Rational(num, deno);
+        return new Rational(num, deno, true);
     }
 
     static create(c0: number, ...cs: number[]): SimpleContinuedFraction{

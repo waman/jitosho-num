@@ -55,12 +55,6 @@ describe('SimpleContinuedFraction', () => {
         assert.approximately(sqrt2.eval(), Math.SQRT2, 1e-8);
     });
 
-    it('#evalWith(cond)', () => {
-        const result = sqrt2.evalWith((prev, current) => Math.abs(prev - current) <= 1e-6);
-        assert(result !== Math.SQRT2);
-        assert.approximately(result, Math.SQRT2, 1e-6);
-    });
-
     describe('#toRational', () => {
 
         it('should throw an error if SimpleContinuedFraction has infinit depth', () => {
