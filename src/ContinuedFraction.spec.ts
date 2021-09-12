@@ -62,18 +62,18 @@ describe('SimpleContinuedFraction', () => {
         });
 
         it('should return a reduced rational number (fraction)', () => {
-            const scf = SimpleContinuedFraction.create(1, 2, 3, 4);
+            const scf = SimpleContinuedFraction.new(1, 2, 3, 4);
             const r = scf.toRational();
-            assert.equal(r.numerator(), 43);
-            assert.equal(r.denominator(), 30);
+            assert.equal(r.numerator, 43);
+            assert.equal(r.denominator, 30);
             assert.equal(r.toNumber(), 1+1/(2+1/(3+1/4)));
         });
 
         it('should return a reduced rational number with the specified depth when depth is passed', () => {
-            const scf = SimpleContinuedFraction.create(1, 2, 3, 4, 5, 6, 7);
+            const scf = SimpleContinuedFraction.new(1, 2, 3, 4, 5, 6, 7);
             const r = scf.toRational(3);
-            assert.equal(r.numerator(), 43);
-            assert.equal(r.denominator(), 30);
+            assert.equal(r.numerator, 43);
+            assert.equal(r.denominator, 30);
             assert.equal(r.toNumber(), 1+1/(2+1/(3+1/4)));
 
             assert.equal(scf.toRational().toNumber(), 1+1/(2+1/(3+1/(4+1/(5+1/(6+1/7))))));
@@ -82,8 +82,8 @@ describe('SimpleContinuedFraction', () => {
 
     // static factory methods
     it('#create()', () => {
-        const scf = SimpleContinuedFraction.create(1, 2, 3, 4);
-        assert.equal(scf.depth(), 3);
+        const scf = SimpleContinuedFraction.new(1, 2, 3, 4);
+        assert.equal(scf.depth, 3);
         assert.equal(scf.coefficient(0), 1);
         assert.equal(scf.coefficient(1), 2);
         assert.equal(scf.coefficient(2), 3);

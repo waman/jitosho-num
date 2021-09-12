@@ -5,7 +5,7 @@ export class Rational{
     private readonly n: number;
     private readonly d: number;
 
-    constructor(numerator: number, denominator: number, isRedeced = false){
+    constructor(numerator: number, denominator: number, isReduced = false){
         if(denominator === 0) throw new Error('Denominator must not be 0.')
 
         let num: number, deno: number;
@@ -15,7 +15,7 @@ export class Rational{
             num = numerator; deno = denominator;
         }
 
-        if(isRedeced){
+        if(isReduced){
             this.n = num;
             this.d = deno;
         }else{
@@ -25,8 +25,8 @@ export class Rational{
         }
     }
 
-    numerator(): number { return this.n; }
-    denominator(): number { return this.d; }
+    get numerator(): number { return this.n; }
+    get denominator(): number { return this.d; }
 
     toNumber(): number { return this.n/this.d; }
 }

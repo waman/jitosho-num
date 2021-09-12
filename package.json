@@ -12,9 +12,6 @@
   },
   "description": "JavaScript/TypeScript library of numbers",
   "license": "ISC",
-  "dependencies": {
-    "tslint": "^6.1.3"
-  },
   "devDependencies": {
     "@types/chai": "^4.2.21",
     "@types/mocha": "^8.2.3",

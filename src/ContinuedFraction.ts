@@ -27,6 +27,8 @@ export abstract class ContinuedFraction {
      */
     abstract partialDenominator(i: number): number;
 
+    get depth(): number { return Number.POSITIVE_INFINITY };
+
     evalUpto(n: number): number {
         let f = 0;
         for(let i = n; i > 0; i--){
@@ -63,8 +65,9 @@ export abstract class ContinuedFraction {
  * 
  *   c0 + 1/(c1 +) 1/(c2 +) 1/(c3 +) ...
  * 
- * SimpleContinuedFraction instances can be created by the static *create*() method of 
- * *SimpleContinuedFraction* class or by an anonymous subclass of *SimpleContinuedFraction* class.
+ * SimpleContinuedFraction instances can be created
+ * by an anonymous subclass of *SimpleContinuedFraction* class
+ * or by the static *new*() method of *SimpleContinuedFraction* class.
  */
 export abstract class SimpleContinuedFraction extends ContinuedFraction{
 
@@ -76,7 +79,6 @@ export abstract class SimpleContinuedFraction extends ContinuedFraction{
     abstract coefficient(i: number): number;
     partialNumerator(_: number): number { return 1; }
     partialDenominator(i: number): number { return this.coefficient(i); }
-    depth(): number { return Number.POSITIVE_INFINITY };
 
     evalUpto(n: number): number {
         let f = 0;
@@ -112,7 +114,7 @@ export abstract class SimpleContinuedFraction extends ContinuedFraction{
      * 
      *   c(0) + 1/(c(1) +) 1/(c(2) +) 1/(c(1) +) ... 1/(c(*depth*))
      */
-    toRational(evalDepth = this.depth()): Rational {
+    toRational(evalDepth = this.depth): Rational {
         if(!isFinite(evalDepth)) 
             throw new Error('Infinite depth continued fraction cannot convert to a rational');
 
@@ -124,7 +126,7 @@ export abstract class SimpleContinuedFraction extends ContinuedFraction{
         return new Rational(num, deno, true);
     }
 
-    static create(c0: number, ...cs: number[]): SimpleContinuedFraction{
+    static new(c0: number, ...cs: number[]): SimpleContinuedFraction{
         const array = new Array<number>();
         array.push(c0);
         return new ArraySimpleContinuedFraction(array.concat(cs));
@@ -141,7 +143,7 @@ class ArraySimpleContinuedFraction extends SimpleContinuedFraction{
         super();
     }
 
-    depth(): number { return this.cs.length-1; }
+    get depth(): number { return this.cs.length-1; }
 
     coefficient(i: number): number { 
         if(i < 0)
